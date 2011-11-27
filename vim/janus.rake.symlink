@@ -1,0 +1,1 @@
+vim_plugin_task "vim-css-color", "https://github.com/ap/vim-css-color.git"
