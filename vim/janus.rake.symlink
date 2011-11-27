@@ -1,1 +1,4 @@
 vim_plugin_task "vim-css-color", "https://github.com/ap/vim-css-color.git"
+vim_plugin_task "matchit", "http://www.vim.org/scripts/download_script.php?src_id=8196"
+vim_plugin_task "textobj-user", "https://github.com/kana/vim-textobj-user.git"
+vim_plugin_task "textobj-rubyblock", "http://www.vim.org/scripts/download_script.php?src_id=14652"
