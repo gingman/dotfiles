@@ -1,1 +1,11 @@
-color mustang
+" Set default colorscheme
+color molokai
+
+" Textmate alignment mapping
+nmap <D-[> <<
+nmap <D-]> >>
+vmap <D-[> <gv
+vmap <D-]> >gv
+
+" Enable saving files when you are not root
+cmap w!! %!sudo tee > /dev/null %
