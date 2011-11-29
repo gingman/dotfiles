@@ -49,6 +49,47 @@ rvm_prompt(){
   fi
 }
 
+hg_branch_info(){
+  unset __CURRENT_HG_BRANCH
+  unset __CURRENT_HG_BRANCH_STATUS
+  unset __CURRENT_HG_BRANCH_IS_DIRTY
+  local st="$(hg status 2>/dev/null)"
+  local br="$(hg branch 2>/dev/null)"
+  if [ -n "$br" ]; then
+    local -a arr
+    arr=(${(f)br})
+    export __CURRENT_HG_BRANCH="$(echo $arr[1])"
+  fi
+  if [ -n "$st" ]; then
+    if echo $st | grep "nothing to commit (working directory clean)" >/dev/null; then
+    else
+      export __CURRENT_HG_BRANCH_IS_DIRTY='1'
+    fi
+  fi
+  
+  if [ -n "$__CURRENT_HG_BRANCH" ]; then
+    local s="("
+    s+="$__CURRENT_HG_BRANCH"
+    case "$__CURRENT_HG_BRANCH_STATUS" in
+            ahead)
+            s+="↑"
+            ;;
+            diverged)
+            s+="↕"
+            ;;
+            behind)
+            s+="↓"
+            ;;
+    esac
+    if [ -n "$__CURRENT_HG_BRANCH_IS_DIRTY" ]; then
+            s+="⚡"
+    fi
+    s+=")"
+    
+    printf "on %s%s" "%{${fg[yellow]}%}" $s
+  fi
+}
+
 # This keeps the number of todos always available the right hand side of my
 # command line. I filter it to only count those tagged as "+next", so it's more
 # of a motivation to clear out the list.
@@ -72,7 +113,7 @@ directory_name(){
   echo "%{$fg_bold[cyan]%}%1/%\/%{$reset_color%}"
 }
 
-export PROMPT=$'\n$(rvm_prompt) in $(directory_name) $(git_dirty)$(need_push)\n› '
+export PROMPT=$'\n$(rvm_prompt) in $(directory_name) $(hg_branch_info)$(git_dirty)$(need_push)\n› '
 set_prompt () {
   export RPROMPT="%{$fg_bold[cyan]%}$(todo)%{$reset_color%}"
 }
