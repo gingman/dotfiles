@@ -1,11 +1,21 @@
+# Use UTF8
+set -g utf8
+set-window-option -g utf8 on
+
+# Make tmux display things in 256 colors
+set -g default-terminal "screen-256color"
+
+# Set scrollback history to 10000 (10k)
+set -g history-limit 10000
+
+# Copy & Paste
 set -g default-command "reattach-to-user-namespace -l zsh" # or bash...
 bind C-c run "tmux save-buffer - | reattach-to-user-namespace pbcopy"
 bind C-v run "reattach-to-user-namespace pbpaste | tmux load-buffer - && tmux paste-buffer"
+
+# Enable Mouse Support
 set -g mouse on
 
-######################
-### DESIGN CHANGES ###
-######################
 # panes
 set -g pane-border-fg black
 set -g pane-active-border-fg brightred
@@ -46,25 +56,19 @@ set-option -g visual-silence off
 set-window-option -g monitor-activity off
 set-option -g bell-action none
 
-set -g default-terminal "screen-256color"
-
-# The modes {
+# The modes
 setw -g clock-mode-colour colour135
 setw -g mode-attr bold
 setw -g mode-fg colour196
 setw -g mode-bg colour238
 
-# }
-# The panes {
-
+# The panes
 set -g pane-border-bg colour235
 set -g pane-border-fg colour238
 set -g pane-active-border-bg colour236
 set -g pane-active-border-fg colour51
 
-# }
-# The statusbar {
-
+# The statusbar
 set -g status-position bottom
 set -g status-bg colour234
 set -g status-fg colour137
@@ -88,11 +92,6 @@ setw -g window-status-bell-attr bold
 setw -g window-status-bell-fg colour255
 setw -g window-status-bell-bg colour1
 
-# }
-# The messages {
-
 set -g message-attr bold
 set -g message-fg colour232
 set -g message-bg colour166
-
-# }
