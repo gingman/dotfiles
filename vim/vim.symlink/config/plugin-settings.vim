@@ -4,11 +4,11 @@ let g:plug_window = 'topleft new'
 
 " ctrlp.vim settings
 " ----------------------------------------------------------------------------------------------------
-map <Leader>t :CtrlP $(pwd)<CR>
+map <Leader>p :CtrlP $(pwd)<CR>
 map <Leader>o :CtrlP %:p:h<CR>
 map <Leader>, :CtrlPBuffer<CR>
 map <Leader>m :CtrlPMRU<CR>
-map <Leader>T :CtrlPClearCache<CR>:CtrlP $(pwd)<CR>
+map <Leader>P :CtrlPClearCache<CR>:CtrlP $(pwd)<CR>
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:10,results:10'
 let g:ctrlp_status_func = { 'main': '', 'prog': '' }
 let g:ctrlp_open_new_file = 'r'
@@ -17,6 +17,13 @@ let g:ctrlp_custom_ignore = {
 \ 'dir':  '\v(^|\/)(deps|log|vendor|tmp|_build|node_modules|\.git|bower_components|\.bower-cache|dist)$',
 \ 'file':  '\v(^|\/)(\.DS_Store|.*\.js\.map)$',
 \}
+
+" vim-rspec settings
+" ----------------------------------------------------------------------------------------------------
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>a :call RunAllSpecs()<CR>
 
 " YankRing
 " ----------------------------------------------------------------------------------------------------
