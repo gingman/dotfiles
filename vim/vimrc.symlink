@@ -6,7 +6,13 @@ call plug#begin('~/.vim/plugged')
 Plug 'altercation/vim-colors-solarized'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mileszs/ack.vim'
+Plug 'vim-scripts/YankRing.vim'
 Plug 'scrooloose/nerdcommenter'
+Plug 'tpope/vim-surround'
+Plug 'bling/vim-airline'
+Plug 'scrooloose/syntastic'
+Plug 'neomake/neomake'
+Plug 'thoughtbot/vim-rspec'
 
 " Filetype-specific plugins
 Plug 'mattn/emmet-vim', { 'for': ['html', 'eruby', 'ruby', 'scss', 'css', 'yaml', 'haml', 'less', 'blade', 'javascript', 'javascript.jsx'] }
