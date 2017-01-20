@@ -5,12 +5,15 @@ base_command=image_optim
 # Retrieve staged images
 images=$(git st -sb | grep "\(A \|M \) \S.*\(\.jpg\|\.svg\|\.png\|.gif\)")
 
-for image in $images; do
-  if [[ "$image" == "A" ]]; then
-    continue
-  fi
+if [ -n "$images" ]; then
+  for image in $images; do
+    echo image
+    if [[ "$image" == "A" ]]; then
+      continue
+    fi
 
-  base_command="$base_command $image"
-done
+    base_command="$base_command $image"
+  done
 
-eval $base_command
+  eval $base_command
+fi
